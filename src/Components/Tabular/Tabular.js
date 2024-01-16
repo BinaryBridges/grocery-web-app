@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
+//import { styled } from '@mui/system';
 import { Tabs } from '@mui/base/Tabs';
 import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel';
@@ -7,6 +7,9 @@ import { buttonClasses } from '@mui/base/Button';
 import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 import CheckedButton from '../CheckedButton/CheckedButton';
 import dataJSON from '../../food_list/food_list.json';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 var data = [];
 
@@ -17,6 +20,8 @@ for (let x in data) {
   console.log(data[x][1]["image"])
 }
 
+
+
 export default function Tabular() {
   return (
     <Tabs defaultValue={1}>
@@ -26,11 +31,15 @@ export default function Tabular() {
         <Tab value={3}>Recipes</Tab>
       </TabsList>
       <TabPanel value={1}>
+        <ButtonStyle>
+        <Stack direction="row" spacing={5}>
         {
           data.map(element => (
             <CheckedButton image={element[1]["image"]} name={element[0]}></CheckedButton>
           ))
         }
+        </Stack>
+        </ButtonStyle>
       </TabPanel>
       <TabPanel value={2}>Second page</TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
@@ -62,7 +71,7 @@ const Tab = styled(BaseTab)`
   line-height: 1.5;
   padding: 8px 12px;
   margin: 6px;
-  border: none;
+  border: 10px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -108,3 +117,11 @@ const TabsList = styled(BaseTabsList)(
   };
   `,
 );
+
+const ButtonStyle = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));

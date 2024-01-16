@@ -3,15 +3,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Button, CardActionArea, CardActions } from '@mui/material';
 
-export default function ActionAreaCard({image, name}) {
+export default function MultiActionAreaCard({image, name}) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 600 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="150"
           image={image}
           alt="green iguna"
         />
@@ -24,6 +24,11 @@ export default function ActionAreaCard({image, name}) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+            ADD
+        </Button>
+      </CardActions>
     </Card>
   );
 }
