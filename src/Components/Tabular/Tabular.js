@@ -6,6 +6,16 @@ import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel';
 import { buttonClasses } from '@mui/base/Button';
 import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 import CheckedButton from '../CheckedButton/CheckedButton';
+import dataJSON from '../../food_list/food_list.json';
+
+var data = [];
+
+for (let x in dataJSON) {
+  data.push([x, dataJSON[x]])
+}
+for (let x in data) {
+  console.log(data[x][1]["image"])
+}
 
 export default function Tabular() {
   return (
@@ -16,7 +26,11 @@ export default function Tabular() {
         <Tab value={3}>Recipes</Tab>
       </TabsList>
       <TabPanel value={1}>
-        <CheckedButton></CheckedButton>
+        {
+          data.map(element => (
+            <CheckedButton image={element[1]["image"]} name={element[0]}></CheckedButton>
+          ))
+        }
       </TabPanel>
       <TabPanel value={2}>Second page</TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
