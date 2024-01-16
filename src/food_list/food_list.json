@@ -1,0 +1,18 @@
+{   
+    "Burgers and Fries": [
+        {
+            "Ingredients": [
+                {
+                    "1": "Ground beef",
+                    "2": "Buns"
+                }
+            ],
+            "recipe": [
+                {
+                    "1": "BOIL",
+                    "2": "BURN"
+                }
+            ]
+        }
+    ]
+}

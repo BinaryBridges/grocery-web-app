@@ -9,10 +9,6 @@ function App() {
     <div className="App">
       <Tabular></Tabular>
       <header className="App-header">
-        
-        <p>
-          Groceries!
-        </p>
       </header>
     </div>
   );
