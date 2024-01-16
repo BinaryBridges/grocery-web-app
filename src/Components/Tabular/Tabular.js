@@ -15,7 +15,9 @@ export default function Tabular() {
         <Tab value={2}>Groceries</Tab>
         <Tab value={3}>Recipes</Tab>
       </TabsList>
-      <TabPanel value={1}><CheckedButton></CheckedButton></TabPanel>
+      <TabPanel value={1}>
+        <CheckedButton></CheckedButton>
+      </TabPanel>
       <TabPanel value={2}>Second page</TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
     </Tabs>
