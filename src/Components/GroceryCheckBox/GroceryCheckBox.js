@@ -8,7 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 
-export default function GroceryCheckBox(ingredients = []) {
+export default function GroceryCheckBox(ingredient) {
   const [checked, setChecked] = React.useState([0]);
 
   const handleToggle = (value) => () => {
@@ -25,15 +25,11 @@ export default function GroceryCheckBox(ingredients = []) {
   };
 
   return (
-    <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {
-      Array.isArray(ingredients)
-      ? ingredients.map(value => {
-        const labelId = `checkbox-list-label-${value}`;
 
-        return (
           <ListItem
-            key={value}
+            key={1}
             secondaryAction={
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />
@@ -41,22 +37,19 @@ export default function GroceryCheckBox(ingredients = []) {
             }
             disablePadding
           >
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+            <ListItemButton role={undefined} onClick={handleToggle(1)} dense>
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.indexOf(1) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
+                  inputProps={{ 'aria-labelledby': 1 }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+              <ListItemText id={1} primary={ingredient["ingredient"]} />
             </ListItemButton>
           </ListItem>
-        );
-      })
-      : null
     }
     </List>
   );

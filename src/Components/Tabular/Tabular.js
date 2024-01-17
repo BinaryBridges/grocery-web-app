@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import GroceryCheckBox from '../GroceryCheckBox/GroceryCheckBox';
+import { List } from '@mui/icons-material';
 
 var data = [];
 var ingredients = [];
@@ -28,6 +29,7 @@ for (let x in data) {
 }
 console.log(ingredients)
 console.log(typeof(ingredients))
+console.log(typeof(data))
 
 
 export default function Tabular() {
@@ -50,7 +52,11 @@ export default function Tabular() {
         </ButtonStyle>
       </TabPanel>
       <TabPanel value={2}>
-        <GroceryCheckBox ingredients={ingredients}></GroceryCheckBox>
+        {
+            ingredients.map(element =>(
+        <GroceryCheckBox ingredient={element}></GroceryCheckBox>
+            ))
+        }
       </TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
     </Tabs>
