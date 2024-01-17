@@ -10,16 +10,24 @@ import dataJSON from '../../food_list/food_list.json';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import GroceryCheckBox from '../GroceryCheckBox/GroceryCheckBox';
 
 var data = [];
+var ingredients = [];
 
 for (let x in dataJSON) {
   data.push([x, dataJSON[x]])
 }
-for (let x in data) {
-  console.log(data[x][1]["image"])
-}
 
+for (let x in data) {
+    for(let i in data[x][1]["ingredients"]) {
+        if(!ingredients.includes(data[x][1]["ingredients"][i])) {
+            ingredients.push(data[x][1]["ingredients"][i])
+        }
+    }
+}
+console.log(ingredients)
+console.log(typeof(ingredients))
 
 
 export default function Tabular() {
@@ -41,7 +49,9 @@ export default function Tabular() {
         </Stack>
         </ButtonStyle>
       </TabPanel>
-      <TabPanel value={2}>Second page</TabPanel>
+      <TabPanel value={2}>
+        <GroceryCheckBox ingredients={ingredients}></GroceryCheckBox>
+      </TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
     </Tabs>
   );
