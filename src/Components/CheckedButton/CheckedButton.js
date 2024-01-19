@@ -5,7 +5,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useState } from 'react';
+import SwipeableTemporaryDrawer from '../SwipeableTemporaryDrawer/SwipeableTemporaryDrawer';
 import './CheckedButton.css';
+
+var foodList = [];
 
 export default function MultiActionAreaCard({image, name}) {
 
@@ -13,6 +16,7 @@ export default function MultiActionAreaCard({image, name}) {
   const [buttonText, setButtonText] = React.useState("ADD")
   const [Variant, setVariant] = React.useState("contained")
   const [color, setColor] = React.useState("success")
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
   React.useEffect(() =>{
     if(localStorage.getItem("foodList") != null) {
@@ -20,6 +24,7 @@ export default function MultiActionAreaCard({image, name}) {
         setButtonText("REMOVE")
         setVariant("outlined")
         setColor("error")
+        setChecked([-1])
       }
     }
   }, [])
@@ -63,7 +68,7 @@ export default function MultiActionAreaCard({image, name}) {
 
   return (
     <Card sx={{ maxWidth: 600 }}>
-      <CardActionArea>
+      <CardActionArea onClick={openDrawer}>
         <CardMedia
           component="img"
           height="170"
