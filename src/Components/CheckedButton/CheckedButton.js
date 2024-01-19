@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 export default function MultiActionAreaCard({image, name}) {
 
-
+  var numberPicked = 0;
 
   const [checked, setChecked] = React.useState([0]);
   const [buttonText, setButtonText] = React.useState("ADD")
@@ -22,16 +22,23 @@ export default function MultiActionAreaCard({image, name}) {
 
     if (currentIndex === -1) {
       newChecked.push(value);
-      console.log("Push")
       setButtonText("ADD")
       setVariant("contained")
       setColor("success")
+      localStorage.removeItem("1")
+      numberPicked = localStorage.getItem("numberPicked")
+      numberPicked -=1;
+      localStorage.setItem("numberPicked", toString(numberPicked))
     } else {
       newChecked.splice(currentIndex, 1);
-      console.log("pushed")
       setButtonText("REMOVE")
       setVariant("outlined")
       setColor("error")
+      localStorage.setItem("1", name)
+      numberPicked = localStorage.getItem("numberPicked")
+      console.log(numberPicked)
+      numberPicked +=1;
+      localStorage.setItem("numberPicked", toString(numberPicked))
     }
 
     setChecked(newChecked);
