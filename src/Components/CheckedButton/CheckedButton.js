@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useState } from 'react';
 import './CheckedButton.css';
+import SwipeableTemporaryDrawer from '../SwipeableTemporaryDrawer/SwipeableTemporaryDrawer';
 
 export default function MultiActionAreaCard({image, name}) {
 
@@ -15,6 +16,7 @@ export default function MultiActionAreaCard({image, name}) {
   const [buttonText, setButtonText] = React.useState("ADD")
   const [Variant, setVariant] = React.useState("contained")
   const [color, setColor] = React.useState("success")
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   
 
   const handleToggle = (value) => () => {
@@ -41,13 +43,21 @@ export default function MultiActionAreaCard({image, name}) {
       numberPicked +=1;
       localStorage.setItem("numberPicked", toString(numberPicked))
     }
-
     setChecked(newChecked);
+  };
+
+  const openDrawer = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
     <Card sx={{ maxWidth: 600 }}>
-      <CardActionArea>
+      <CardActionArea onClick={openDrawer}>
+      
         <CardMedia
           component="img"
           height="150"
@@ -68,6 +78,7 @@ export default function MultiActionAreaCard({image, name}) {
             {buttonText}
         </Button>
       </CardActions>
+      <SwipeableTemporaryDrawer open={isDrawerOpen} onClose={closeDrawer} />
     </Card>
   );
 }
