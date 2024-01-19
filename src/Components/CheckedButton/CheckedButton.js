@@ -7,8 +7,6 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useState } from 'react';
 import './CheckedButton.css';
 
-var foodList = [];
-
 export default function MultiActionAreaCard({image, name}) {
 
   const [checked, setChecked] = React.useState([0]);
@@ -22,7 +20,6 @@ export default function MultiActionAreaCard({image, name}) {
         setButtonText("REMOVE")
         setVariant("outlined")
         setColor("error")
-        setChecked([-1])
       }
     }
   }, [])
@@ -53,14 +50,20 @@ export default function MultiActionAreaCard({image, name}) {
         localStorage.setItem("foodList", JSON.stringify(foodList))
     }
 
-
-
     setChecked(newChecked);
+  };
+
+  const openDrawer = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
     <Card sx={{ maxWidth: 600 }}>
-      <CardActionArea >
+      <CardActionArea>
         <CardMedia
           component="img"
           height="170"
@@ -81,6 +84,7 @@ export default function MultiActionAreaCard({image, name}) {
             {buttonText}
         </Button>
       </CardActions>
+      <SwipeableTemporaryDrawer open={isDrawerOpen} onClose={closeDrawer} />
     </Card>
   );
 }
