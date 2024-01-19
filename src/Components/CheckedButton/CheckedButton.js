@@ -22,6 +22,7 @@ export default function MultiActionAreaCard({image, name}) {
         setButtonText("REMOVE")
         setVariant("outlined")
         setColor("error")
+        setChecked([-1])
       }
     }
   }, [])
@@ -52,12 +53,14 @@ export default function MultiActionAreaCard({image, name}) {
         localStorage.setItem("foodList", JSON.stringify(foodList))
     }
 
+
+
     setChecked(newChecked);
   };
 
   return (
     <Card sx={{ maxWidth: 600 }}>
-      <CardActionArea>
+      <CardActionArea >
         <CardMedia
           component="img"
           height="170"
