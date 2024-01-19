@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useState } from 'react';
+import './CheckedButton.css';
 
 export default function MultiActionAreaCard({image, name}) {
 
