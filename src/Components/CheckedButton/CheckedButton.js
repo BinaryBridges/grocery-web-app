@@ -7,39 +7,49 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useState } from 'react';
 import './CheckedButton.css';
 
-export default function MultiActionAreaCard({image, name}) {
+var foodList = [];
 
-  var numberPicked = 0;
+export default function MultiActionAreaCard({image, name}) {
 
   const [checked, setChecked] = React.useState([0]);
   const [buttonText, setButtonText] = React.useState("ADD")
   const [Variant, setVariant] = React.useState("contained")
   const [color, setColor] = React.useState("success")
+
+  React.useEffect(() =>{
+    if(localStorage.getItem("foodList") != null) {
+      if(JSON.parse(localStorage.getItem("foodList")).includes(name)) {
+        setButtonText("REMOVE")
+        setVariant("outlined")
+        setColor("error")
+      }
+    }
+  }, [])
+  
   
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
+    if (currentIndex === -1) {//REMOVE
       newChecked.push(value);
       setButtonText("ADD")
       setVariant("contained")
       setColor("success")
-      localStorage.removeItem("1")
-      numberPicked = localStorage.getItem("numberPicked")
-      numberPicked -=1;
-      localStorage.setItem("numberPicked", toString(numberPicked))
-    } else {
+      foodList = JSON.parse(localStorage.getItem("foodList"))
+      foodList.splice(foodList.indexOf(name), 1)
+      localStorage.setItem("foodList",JSON.stringify(foodList))
+    } else {//ADD
       newChecked.splice(currentIndex, 1);
       setButtonText("REMOVE")
       setVariant("outlined")
       setColor("error")
-      localStorage.setItem("1", name)
-      numberPicked = localStorage.getItem("numberPicked")
-      console.log(numberPicked)
-      numberPicked +=1;
-      localStorage.setItem("numberPicked", toString(numberPicked))
+      if(localStorage.getItem("foodList") != null) {
+        foodList = JSON.parse(localStorage.getItem("foodList"))
+      }
+        foodList.push(name)
+        localStorage.setItem("foodList", JSON.stringify(foodList))
     }
 
     setChecked(newChecked);
@@ -50,7 +60,7 @@ export default function MultiActionAreaCard({image, name}) {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="150"
+          height="170"
           image={image}
           alt="green iguna"
         />

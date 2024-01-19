@@ -13,15 +13,6 @@ import Paper from '@mui/material/Paper';
 import GroceryCheckBox from '../GroceryCheckBox/GroceryCheckBox';
 import { List } from '@mui/icons-material';
 
-var numberPicked
-
-if(localStorage.getItem("numberPicked") != null) {
-    numberPicked = localStorage.getItem("numberPicked")
-} else {
-    localStorage.setItem("numberPicked", "0")
-}
-
-
 var data = [];
 var ingredients = [];
 
