@@ -10,7 +10,7 @@ import './CheckedButton.css';
 
 var foodList = [];
 
-export default function MultiActionAreaCard({image, name}) {
+export default function MultiActionAreaCard({image, name, callBackPressed}) {
 
   const [checked, setChecked] = React.useState([0]);
   const [buttonText, setButtonText] = React.useState("ADD")
@@ -35,7 +35,9 @@ export default function MultiActionAreaCard({image, name}) {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {//REMOVE
+    callBackPressed(name, currentIndex)
+
+    if (currentIndex === -1) {//BUTTON SAYS REMOVE
       newChecked.push(value);
       setButtonText("ADD")
       setVariant("contained")
@@ -43,11 +45,12 @@ export default function MultiActionAreaCard({image, name}) {
       foodList = JSON.parse(localStorage.getItem("foodList"))
       foodList.splice(foodList.indexOf(name), 1)
       localStorage.setItem("foodList",JSON.stringify(foodList))
-    } else {//ADD
+    } else {//BUTTON SAYS ADD
       newChecked.splice(currentIndex, 1);
       setButtonText("REMOVE")
       setVariant("outlined")
       setColor("error")
+      
       if(localStorage.getItem("foodList") != null) {
         foodList = JSON.parse(localStorage.getItem("foodList"))
       }

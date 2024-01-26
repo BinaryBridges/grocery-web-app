@@ -20,16 +20,23 @@ for (let x in dataJSON) {
   data.push([x, dataJSON[x]])
 }
 
-for (let x in data) {
-    for(let i in data[x][1]["ingredients"]) {
-        if(!ingredients.includes(data[x][1]["ingredients"][i])) {
-            ingredients.push(data[x][1]["ingredients"][i])
-        }
-    }
-}
-
-
 export default function Tabular() {
+
+  const GroceryAdded = (meal, currentIndex) => {
+    for (let x in data) {
+      if(data[x][0] === meal) {
+        for(let i in data[x][1]["ingredients"]) {
+          if(!ingredients.includes(data[x][1]["ingredients"][i])) {
+              ingredients.push(data[x][1]["ingredients"][i])
+              //console.log(data[x][1]["ingredients"][i])
+          }
+        }
+      }
+    }
+    console.log(ingredients)
+    console.log(currentIndex)
+  }
+
   return (
     <Tabs defaultValue={1}>
       <TabsList>
@@ -42,17 +49,17 @@ export default function Tabular() {
         <Stack direction="row" spacing={5}>
         {
           data.map(element => (
-            <CheckedButton image={element[1]["image"]} name={element[0]}></CheckedButton>
+            <CheckedButton image={element[1]["image"]} name={element[0]} callBackPressed={GroceryAdded}></CheckedButton>
           ))
         }
         </Stack>
         </ButtonStyle>
       </TabPanel>
-      <TabPanel value={2}>
+      <TabPanel value={2} >
         {
-            ingredients.map(element =>(
-        <GroceryCheckBox ingredient={element}></GroceryCheckBox>
-            ))
+          JSON.parse(localStorage.getItem("foodList")).map(element =>(
+            <GroceryCheckBox ingredient={element}></GroceryCheckBox>
+          ))
         }
       </TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
