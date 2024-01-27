@@ -2,8 +2,14 @@
     "Burgers and Fries":{
         "image": "https://thumbs.dreamstime.com/b/burger-french-fries-basket-tartan-tablecloth-ketchup-mustard-bottle-background-close-up-135319836.jpg",
         "ingredients": {
-            "1": "Ground beef",
-            "2": "Buns"
+            "Ground beef": {
+                "weight": 10,
+                "weight type": "lb"
+            },
+            "Buns": {
+                "weight": 20,
+                "weight type": "lb"
+            }
         },
         "recipe": {
             "1": "BOIL",
@@ -13,9 +19,18 @@
     "Pizza1": {
             "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
             "ingredients": {
-                "1": "pineapple",
-                "2": "dough",
-                "3": "sauce"
+                "pineapple": {
+                    "weight": 10,
+                    "weight type": "lb"
+                },
+                "dough": {
+                    "weight": 20,
+                    "weight type": "lb"
+                },
+                "sauce": {
+                    "weight": 30,
+                    "weight type": "lb"
+                }
             },
             "recipe": {
                 "1": "BAKE",
@@ -25,8 +40,14 @@
     "Pizza2": {
             "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
             "ingredients": {
-                "1": "dough",
-                "2": "sauce"
+                "dough":{
+                    "weight": 10,
+                    "weight type": "lb"
+                },
+                "sauce": {
+                    "weight": 20,
+                    "weight type": "lb"
+                }
             },
             "recipe": {
                 "1": "BAKE",
@@ -36,8 +57,14 @@
     "Pizza3": {
             "image": "https://www.allrecipes.com/thmb/0xH8n2D4cC97t7mcC7eT2SDZ0aE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6776_Pizza-Dough_ddmfs_2x1_1725-fdaa76496da045b3bdaadcec6d4c5398.jpg",
             "ingredients": {
-                "1": "dough",
-                "2": "sauce"
+                "dough": {
+                    "weight": 10,
+                    "weight type": "lb"
+                },
+                "sauce": {
+                    "weight": 20,
+                    "weight type": "lb"
+                }
             },
             "recipe": {
                 "1": "BAKE",
