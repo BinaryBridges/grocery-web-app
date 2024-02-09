@@ -12,9 +12,11 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import GroceryCheckBox from '../GroceryCheckBox/GroceryCheckBox';
 import { List } from '@mui/icons-material';
+import weightHelper, { mixWeights } from '../../Helper/weightHelper';
 
 var data = [];
 var ingredients = [];
+var contains = false;
 
 for (let x in dataJSON) {
   data.push([x, dataJSON[x]])
@@ -23,18 +25,63 @@ for (let x in dataJSON) {
 export default function Tabular() {
 
   const GroceryAdded = (meal, currentIndex) => {
-    for (let x in data) {
-      if(data[x][0] === meal) {
-        for(let i in data[x][1]["ingredients"]) {
-          if(!ingredients.includes(data[x][1]["ingredients"][i])) {
-              ingredients.push(data[x][1]["ingredients"][i])
-              //console.log(data[x][1]["ingredients"][i])
+    for (let i in data) {
+      if(data[i][0] === meal) {
+        for (let x in data[i][1]["ingredients"]) {
+          for (let y in ingredients) {
+            if(ingredients[y][0] === x) {//IIIIIIIIIIT ALWREADY EXISATS
+              contains = true;
+              console.log(x)
+              ingredients[y][1] = mixWeights(data[i][1]["ingredients"][x], ingredients[y])
+            }
+          }
+          if(contains === false) {
+            ingredients.push([x, data[i][1]["ingredients"][x]["weight"], data[i][1]["ingredients"][x]["weight type"], false])
+          } else {
+            contains = false
           }
         }
       }
     }
     console.log(ingredients)
-    console.log(currentIndex)
+
+    // if(currentIndex !== -1) {//add a new ingredient
+    //   for (let x in data) {
+    //     if(data[x][0] === meal) {
+    //       for(let i in data[x][1]["ingredients"]) {
+    //         if(!ingredients.includes(data[x][1]["ingredients"][i])) {
+
+    //             console.log([data[x][1]["ingredients"][i], false])
+    //             console.log(ingredients)
+    //             console.log(ingredients.indexOf([data[x][1]["ingredients"][i], false]))
+
+    //             ingredients.push([data[x][1]["ingredients"][i], false])
+    //             //console.log(data[x][1]["ingredients"][i])
+    //             //console.log(data[x][1]["ingredients"][i])
+    //             //console.log(ingredients.includes([data[x][1]["ingredients"][i], false]))
+    //         } else {
+    //            const i = ingredients.indexOf(data[x][1]["ingredients"][i])
+    //           //mixWeights(ingre)
+    //           console.log("HELP")
+    //           console.log(i)
+    //         }
+    //       }
+    //     }
+    //   }
+    // } else {//remove ingredient
+    //   for (let x in data) {
+    //     if(data[x][0] === meal) {
+    //       for(let i in data[x][1]["ingredients"]) {
+    //         if(!ingredients.includes(data[x][1]["ingredients"][i])) {
+    //             //ingredients.push([data[x][1]["ingredients"][i], false])
+    //             //console.log(data[x][1]["ingredients"][i])
+    //           //console.log(data[x][1]["ingredients"][i])
+    //           ingredients.splice(data[x][1]["ingredients"][i], 1)
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   return (
