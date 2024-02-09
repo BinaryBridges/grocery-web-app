@@ -55,11 +55,11 @@ export default function Tabular() {
         </Stack>
         </ButtonStyle>
       </TabPanel>
-      <TabPanel value={2} >
+      <TabPanel value={2}>
         {
-          JSON.parse(localStorage.getItem("foodList")).map(element =>(
-            <GroceryCheckBox ingredient={element}></GroceryCheckBox>
-          ))
+          // JSON.parse(localStorage.getItem("foodList")).map(element =>(
+          //   <GroceryCheckBox ingredient={element}></GroceryCheckBox>
+          // ))
         }
       </TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
