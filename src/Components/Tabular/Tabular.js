@@ -44,7 +44,7 @@ export default function Tabular() {
           }
         }
       }
-    } else {
+    } else {// Remove ingredient
       for(let i in data) {
         if (data[i][0] === meal) {
           for(let y in data[i][1]["ingredients"]) {
@@ -67,11 +67,15 @@ export default function Tabular() {
     console.log(ingredients)
   }
 
+  const trying = () => {
+    console.log("HI")
+  }
+
   return (
     <Tabs defaultValue={1}>
       <TabsList>
         <Tab value={1}>Meals</Tab>
-        <Tab value={2}>Groceries</Tab>
+        <Tab value={2} action={trying}>Groceries</Tab>
         <Tab value={3}>Recipes</Tab>
       </TabsList>
       <TabPanel value={1}>
