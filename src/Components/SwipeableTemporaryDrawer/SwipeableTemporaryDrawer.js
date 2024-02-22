@@ -10,7 +10,9 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
 export default function SwipeableTemporaryDrawer({ open, onClose }) {
   const [state, setState] = React.useState({
@@ -28,20 +30,32 @@ export default function SwipeableTemporaryDrawer({ open, onClose }) {
 
   const list = () => (
     <Box
-      sx={{ width: 250 }}
+      sx={{width: 250, position: 'relative' }}
       role="presentation"
     >
       {/* Close Icon */}
+      <Typography variant="h6" component="div" sx={{ p: 2 }}>
+        Title
+      </Typography>
       <IconButton 
         onClick={handleClose}
-        sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }} // Adjusted for better hitbox
+        sx={{ position: 'fixed', top: 10, right: 1285, zIndex: 1300}}
+        color="error"
       >
         <CloseIcon />
       </IconButton>
-      
+
+      <IconButton 
+        onClick={handleClose}
+        sx={{ position: 'fixed', top: 650, right: 1285, zIndex: 1300}}
+        color="success"
+      >
+          <AddIcon />
+      </IconButton>
+
       {/* List Items */}
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts', 'Aria', 'Nathan', 'Idiots', 'Zero', 'Hero'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -54,7 +68,7 @@ export default function SwipeableTemporaryDrawer({ open, onClose }) {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['All mail', 'Trash', 'Spam', 'Yes', 'No', 'Yup', 'Dap', 'sat'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
