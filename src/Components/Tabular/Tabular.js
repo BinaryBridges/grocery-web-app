@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import GroceryCheckBox from '../GroceryCheckBox/GroceryCheckBox';
-import { List } from '@mui/icons-material';
+import { ContactlessOutlined, List } from '@mui/icons-material';
 import weightHelper, { mixWeights, removeWeights } from '../../Helper/weightHelper';
 
 var data = [];
@@ -44,24 +44,24 @@ export default function Tabular() {
           }
         }
       }
-    } else {// Remove ingredient
-      for(let i in data) {
-        if (data[i][0] === meal) {
-          for(let y in data[i][1]["ingredients"]) {
+    } else {//Remove Ingredient
+        for (let i in data) {
+          if (data[i][0] === meal) {
             for(let x in ingredients) {
-              if(y === ingredients[x][0]) {
-                var temp = removeWeights(data[i][1]["ingredients"][y], ingredients[x])
-                if(temp === 0) {//remove the ingredient altogether
-                  ingredients.splice(ingredients.indexOf[x],1)
-                } else {
+              for (let y in data[i][1]["ingredients"]) {
+                if(ingredients[x][0] === y) {
+                  var temp = removeWeights(data[i][1]["ingredients"][y]["weight"], ingredients[x][1])
                   ingredients[x][1] = temp;
                 }
-                break
               }
             }
           }
         }
-      }
+        for (var x = ingredients.length - 1; x >= 0; x--) {
+          if(ingredients[x][1] <= 0) {
+            ingredients.splice(ingredients.indexOf[x],1)
+          }
+        }
     }
   
     console.log(ingredients)
