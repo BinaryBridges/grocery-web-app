@@ -13,6 +13,10 @@ import Paper from '@mui/material/Paper';
 import GroceryCheckBox from '../GroceryCheckBox/GroceryCheckBox';
 import { ContactlessOutlined, List } from '@mui/icons-material';
 import weightHelper, { mixWeights, removeWeights } from '../../Helper/weightHelper';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { useState, useEffect } from 'react';
 
 var data = [];
 var ingredients = [];
@@ -23,6 +27,20 @@ for (let x in dataJSON) {
 }
 
 export default function Tabular() {
+  const [currentTab, setCurrentTab] = useState(1);
+  const [checked, setChecked] = useState(ingredients.map(() => false));
+
+  const handleTabChange = (event, newValue) => {
+    setCurrentTab(newValue); 
+  };
+
+  const handleChange = (event, i) => {
+    const newChecked = [...checked];
+    newChecked[i] = event.target.checked;
+    // Set the updated array as the new state
+    setChecked(newChecked);
+  };
+
 
   const GroceryChanged = (meal, currentIndex) => {
     if(currentIndex !== -1) {//ADD INGREDIENT
@@ -72,7 +90,7 @@ export default function Tabular() {
   }
 
   return (
-    <Tabs defaultValue={1}>
+    <Tabs defaultValue={1} onChange={handleTabChange}>
       <TabsList>
         <Tab value={1}>Meals</Tab>
         <Tab value={2} action={trying}>Groceries</Tab>
@@ -90,11 +108,15 @@ export default function Tabular() {
         </ButtonStyle>
       </TabPanel>
       <TabPanel value={2}>
-        {
-          // JSON.parse(localStorage.getItem("foodList")).map(element =>(
-          //   <GroceryCheckBox ingredient={element}></GroceryCheckBox>
-          // ))
-        }
+        <FormGroup>
+          {ingredients.map((ingredient, i) => (
+            <FormControlLabel
+              key={ingredient[0]}
+              control={<Checkbox onChange = {(event) => handleChange(event, i)} checked= {checked[i]}/>}
+              label={`${ingredient[0]} - ${ingredient[1]} ${ingredient[2]}`}
+            />
+          ))}
+        </FormGroup>
       </TabPanel>
       <TabPanel value={3}>Third page</TabPanel>
     </Tabs>

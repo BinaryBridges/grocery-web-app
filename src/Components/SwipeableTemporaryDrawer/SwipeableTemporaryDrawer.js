@@ -39,7 +39,7 @@ export default function SwipeableTemporaryDrawer({ open, onClose }) {
       </Typography>
       <IconButton 
         onClick={handleClose}
-        sx={{ position: 'fixed', top: 10, right: 1285, zIndex: 1300}}
+        sx={{ position: 'fixed', top: 10, right: window.innerWidth - 250, zIndex: 1300}}
         color="error"
       >
         <CloseIcon />
@@ -47,7 +47,7 @@ export default function SwipeableTemporaryDrawer({ open, onClose }) {
 
       <IconButton 
         onClick={handleClose}
-        sx={{ position: 'fixed', top: 650, right: 1285, zIndex: 1300}}
+        sx={{ position: 'fixed', top: 650, right: window.innerWidth - 250, zIndex: 1300}}
         color="success"
       >
           <AddIcon />
